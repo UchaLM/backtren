@@ -1,0 +1,56 @@
+@urlbase=http://localhost:3000
+
+@urlhealth={{urlbase}}/health
+@urlusers={{urlbase}}/users
+@urlsubjects={{urlbase}}/subjects
+
+### Test Health
+GET {{urlhealth}}
+
+### GET Todos los usuarios
+GET {{urlusers}}
+
+### POST Crear Profesor
+POST {{urlusers}}
+Content-Type: application/json
+
+{
+  "name": "Profesor Oak",
+  "email": "oak@pokemon.com",
+  "password": "123",
+  "role": "profesor"
+}
+
+### POST Crear Alumno
+POST {{urlusers}}
+Content-Type: application/json
+
+{
+  "name": "Ash Ketchum",
+  "email": "ash@pokemon.com",
+  "password": "123",
+  "role": "alumno"
+}
+
+### POST Crear Materia (Reemplazar ID de profesor)
+POST {{urlsubjects}}
+Content-Type: application/json
+
+{
+  "name": "Biología Pokémon",
+  "professor_id": "REEMPLAZAR_CON_UUID_DEL_PROFESOR"
+}
+
+### GET Todas las Materias
+GET {{urlsubjects}}
+
+### POST Alumno se inscribe a Materia (Reemplazar IDs)
+POST {{urlsubjects}}/REEMPLAZAR_CON_UUID_MATERIA/enroll
+Content-Type: application/json
+
+{
+  "student_id": "REEMPLAZAR_CON_UUID_ALUMNO"
+}
+
+### GET Materias por Usuario (Reemplazar ID, sirve para alumno o profe)
+GET {{urlsubjects}}/user/REEMPLAZAR_CON_UUID_USUARIO
